@@ -3,6 +3,8 @@
 Simple compose file to run kube-ops-view locally with 
 Docker For Mac / Docker For Windows.
 
+![compose up](picture.png)
+
 ## How
 
 Mounts your `~/.kube/config` into a kubectl container and joins the kube-ops-view
