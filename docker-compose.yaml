@@ -1,0 +1,23 @@
+version: "3"
+
+services:
+  kubectl: 
+    image: lachlanevenson/k8s-kubectl:v1.7.10
+    command:
+      - proxy
+    #  - address
+    #  - 0.0.0.0
+    ports:
+      - "8001:8001"
+      - "8080:8080"
+    volumes:
+      - "${HOME}/.kube/config:/root/.kube/config"
+
+  kube-ops-view:
+    image: hjacobs/kube-ops-view
+    environment:
+      - CLUSTER=http://127.0.0.1:8001
+    depends_on: 
+      - kubectl
+    network_mode: "service:kubectl"
+
